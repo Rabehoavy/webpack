@@ -24,6 +24,7 @@ let config = {
                 hmr: process.env.NODE_ENV === 'development',
                 },
             },
+            'css-hot-loader',
             'css-loader',
             'postcss-loader',
             'sass-loader',
@@ -37,6 +38,14 @@ let config = {
           filename: devMode ? '[name].css' : '[name].[hash].css',
           chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
         }),
-      ]
+      ],
+      devServer: {
+        contentBase: path.resolve(__dirname, "./public"),
+        historyApiFallback: true,
+        inline: true,
+        open: true,
+        hot: true
+      },
+      devtool: "eval-source-map"
   }
   module.exports = config;
