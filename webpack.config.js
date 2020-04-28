@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const devMode = process.env.NODE_ENV !== 'production';
 
 let config = {
@@ -38,6 +39,7 @@ let config = {
           filename: devMode ? '[name].css' : '[name].[hash].css',
           chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
         }),
+        new UglifyJSPlugin()
       ],
       devServer: {
         contentBase: path.resolve(__dirname, "./public"),
